@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Petstore API Test - ReqCraft</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      padding: 30px;
+    }
+
+    h1 {
+      color: #2d3748;
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+
+    .subtitle {
+      color: #718096;
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+
+    .info-box {
+      background: #ebf8ff;
+      border-left: 4px solid #4299e1;
+      padding: 15px;
+      margin-bottom: 25px;
+      border-radius: 4px;
+    }
+
+    .info-box h3 {
+      color: #2c5282;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+
+    .info-box ol {
+      margin-left: 20px;
+      color: #2d3748;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .info-box code {
+      background: #bee3f8;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 13px;
+    }
+
+    .test-section {
+      margin-bottom: 20px;
+      padding: 20px;
+      background: #f7fafc;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .test-section h2 {
+      color: #2d3748;
+      margin-bottom: 12px;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .method-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .method-get { background: #48bb78; }
+    .method-post { background: #4299e1; }
+    .method-put { background: #ed8936; }
+    .method-patch { background: #9f7aea; }
+    .method-delete { background: #f56565; }
+
+    .endpoint {
+      background: #edf2f7;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: #2d3748;
+      margin-bottom: 12px;
+      word-break: break-all;
+    }
+
+    button {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.3s;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .response-box {
+      margin-top: 15px;
+      padding: 15px;
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .response-box h4 {
+      color: #2d3748;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .response-box pre {
+      background: #2d3748;
+      color: #68d391;
+      padding: 12px;
+      border-radius: 4px;
+      overflow-x: auto;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-left: 8px;
+    }
+
+    .status-success { background: #c6f6d5; color: #22543d; }
+    .status-error { background: #fed7d7; color: #742a2a; }
+
+    .input-group {
+      margin-bottom: 12px;
+    }
+
+    .input-group label {
+      display: block;
+      color: #4a5568;
+      font-size: 13px;
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+
+    .input-group input,
+    .input-group textarea {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #cbd5e0;
+      border-radius: 4px;
+      font-size: 13px;
+      font-family: inherit;
+    }
+
+    .input-group textarea {
+      font-family: 'Courier New', monospace;
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .note {
+      background: #fffaf0;
+      border-left: 4px solid #ed8936;
+      padding: 12px;
+      margin-top: 15px;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #744210;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🐾 Petstore API Test</h1>
+    <div class="subtitle">Test all HTTP methods with Swagger Petstore API v2</div>
+
+    <div class="info-box">
+      <h3>📋 Setup Instructions</h3>
+      <ol>
+        <li>Open the <strong>ReqCraft</strong> extension</li>
+        <li>Create a new rule with URL Pattern: <code>*petstore.swagger.io*</code></li>
+        <li>Select methods: <code>GET, POST, PUT, PATCH, DELETE</code></li>
+        <li>Add modifications (e.g., add header, modify body fields)</li>
+        <li>Enable the rule and click the test buttons below</li>
+      </ol>
+    </div>
+
+    <!-- GET Test -->
+    <div class="test-section">
+      <h2>
+        <span class="method-badge method-get">GET</span>
+        Get Pet by ID
+      </h2>
+      <div class="endpoint">GET https://petstore.swagger.io/v2/pet/{petId}</div>
+      
+      <div class="input-group">
+        <label>Pet ID:</label>
+        <input type="number" id="getPetId" value="1" placeholder="Enter pet ID">
+      </div>
+
+      <button onclick="testGetPet()">Test GET Request</button>
+      <div id="getResponse" class="response-box" style="display:none;">
+        <h4>Response:</h4>
+        <pre id="getResponseData"></pre>
+      </div>
+    </div>
+
+    <!-- POST Test -->
+    <div class="test-section">
+      <h2>
+        <span class="method-badge method-post">POST</span>
+        Create New Pet
+      </h2>
+      <div class="endpoint">POST https://petstore.swagger.io/v2/pet</div>
+      
+      <div class="input-group">
+        <label>Request Body (JSON):</label>
+        <textarea id="postBody">{
+  "id": 12345,
+  "name": "Fluffy",
+  "category": {
+    "id": 1,
+    "name": "Dogs"
+  },
+  "photoUrls": ["https://example.com/fluffy.jpg"],
+  "tags": [
+    {
+      "id": 1,
+      "name": "cute"
+    }
+  ],
+  "status": "available"
+}</textarea>
+      </div>
+
+      <button onclick="testPostPet()">Test POST Request</button>
+      <div id="postResponse" class="response-box" style="display:none;">
+        <h4>Response:</h4>
+        <pre id="postResponseData"></pre>
+      </div>
+
+      <div class="note">
+        💡 <strong>Tip:</strong> Add a body modification rule to change the pet name or add custom fields!
+      </div>
+    </div>
+
+    <!-- PUT Test -->
+    <div class="test-section">
+      <h2>
+        <span class="method-badge method-put">PUT</span>
+        Update Existing Pet
+      </h2>
+      <div class="endpoint">PUT https://petstore.swagger.io/v2/pet</div>
+      
+      <div class="input-group">
+        <label>Request Body (JSON):</label>
+        <textarea id="putBody">{
+  "id": 12345,
+  "name": "Fluffy Updated",
+  "category": {
+    "id": 1,
+    "name": "Dogs"
+  },
+  "photoUrls": ["https://example.com/fluffy.jpg"],
+  "tags": [
+    {
+      "id": 1,
+      "name": "cute"
+    },
+    {
+      "id": 2,
+      "name": "friendly"
+    }
+  ],
+  "status": "available"
+}</textarea>
+      </div>
+
+      <button onclick="testPutPet()">Test PUT Request</button>
+      <div id="putResponse" class="response-box" style="display:none;">
+        <h4>Response:</h4>
+        <pre id="putResponseData"></pre>
+      </div>
+    </div>
+
+    <!-- PATCH Test -->
+    <div class="test-section">
+      <h2>
+        <span class="method-badge method-patch">PATCH</span>
+        Partial Update Pet (Form Data)
+      </h2>
+      <div class="endpoint">POST https://petstore.swagger.io/v2/pet/{petId} (simulates PATCH)</div>
+      
+      <div class="input-group">
+        <label>Pet ID:</label>
+        <input type="number" id="patchPetId" value="12345" placeholder="Enter pet ID">
+      </div>
+
+      <div class="input-group">
+        <label>New Name:</label>
+        <input type="text" id="patchName" value="Fluffy Patched" placeholder="Enter new name">
+      </div>
+
+      <div class="input-group">
+        <label>New Status:</label>
+        <input type="text" id="patchStatus" value="sold" placeholder="Enter new status">
+      </div>
+
+      <button onclick="testPatchPet()">Test PATCH Request</button>
+      <div id="patchResponse" class="response-box" style="display:none;">
+        <h4>Response:</h4>
+        <pre id="patchResponseData"></pre>
+      </div>
+
+      <div class="note">
+        💡 <strong>Note:</strong> Petstore API uses POST with form data for partial updates. This simulates a PATCH operation.
+      </div>
+    </div>
+
+    <!-- DELETE Test -->
+    <div class="test-section">
+      <h2>
+        <span class="method-badge method-delete">DELETE</span>
+        Delete Pet
+      </h2>
+      <div class="endpoint">DELETE https://petstore.swagger.io/v2/pet/{petId}</div>
+      
+      <div class="input-group">
+        <label>Pet ID:</label>
+        <input type="number" id="deletePetId" value="12345" placeholder="Enter pet ID">
+      </div>
+
+      <button onclick="testDeletePet()">Test DELETE Request</button>
+      <div id="deleteResponse" class="response-box" style="display:none;">
+        <h4>Response:</h4>
+        <pre id="deleteResponseData"></pre>
+      </div>
+    </div>
+
+    <!-- Test All -->
+    <div class="test-section" style="background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%);">
+      <h2>🚀 Run All Tests</h2>
+      <button onclick="runAllTests()" style="background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);">
+        Run All Tests in Sequence
+      </button>
+    </div>
+  </div>
+
+  <script>
+    console.log('%c🐾 Petstore API Test Page Loaded', 'font-size: 16px; color: #667eea; font-weight: bold;');
+    console.log('%cCheck the extension rules are enabled for petstore.swagger.io', 'color: #718096;');
+
+    // Helper function to display response
+    function displayResponse(elementId, data, status) {
+      const responseBox = document.getElementById(elementId);
+      const responseData = document.getElementById(elementId + 'Data');
+      
+      responseBox.style.display = 'block';
+      
+      const statusClass = status >= 200 && status < 300 ? 'status-success' : 'status-error';
+      const statusText = `<span class="status ${statusClass}">Status: ${status}</span>`;
+      
+      responseBox.querySelector('h4').innerHTML = 'Response: ' + statusText;
+      responseData.textContent = JSON.stringify(data, null, 2);
+    }
+
+    // GET Test
+    async function testGetPet() {
+      const petId = document.getElementById('getPetId').value;
+      console.log(`%c[GET Test] Fetching pet with ID: ${petId}`, 'color: #48bb78; font-weight: bold;');
+      
+      try {
+        const response = await fetch(`https://petstore.swagger.io/v2/pet/${petId}`, {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+        
+        const data = await response.json();
+        console.log('[GET Test] Response:', data);
+        displayResponse('getResponse', data, response.status);
+      } catch (error) {
+        console.error('[GET Test] Error:', error);
+        displayResponse('getResponse', { error: error.message }, 0);
+      }
+    }
+
+    // POST Test
+    async function testPostPet() {
+      const body = document.getElementById('postBody').value;
+      console.log('%c[POST Test] Creating new pet', 'color: #4299e1; font-weight: bold;');
+      console.log('[POST Test] Request body:', body);
+      
+      try {
+        const response = await fetch('https://petstore.swagger.io/v2/pet', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: body
+        });
+        
+        const data = await response.json();
+        console.log('[POST Test] Response:', data);
+        displayResponse('postResponse', data, response.status);
+      } catch (error) {
+        console.error('[POST Test] Error:', error);
+        displayResponse('postResponse', { error: error.message }, 0);
+      }
+    }
+
+    // PUT Test
+    async function testPutPet() {
+      const body = document.getElementById('putBody').value;
+      console.log('%c[PUT Test] Updating pet', 'color: #ed8936; font-weight: bold;');
+      console.log('[PUT Test] Request body:', body);
+      
+      try {
+        const response = await fetch('https://petstore.swagger.io/v2/pet', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: body
+        });
+        
+        const data = await response.json();
+        console.log('[PUT Test] Response:', data);
+        displayResponse('putResponse', data, response.status);
+      } catch (error) {
+        console.error('[PUT Test] Error:', error);
+        displayResponse('putResponse', { error: error.message }, 0);
+      }
+    }
+
+    // PATCH Test (using POST with form data as Petstore doesn't have true PATCH)
+    async function testPatchPet() {
+      const petId = document.getElementById('patchPetId').value;
+      const name = document.getElementById('patchName').value;
+      const status = document.getElementById('patchStatus').value;
+      
+      console.log('%c[PATCH Test] Partially updating pet', 'color: #9f7aea; font-weight: bold;');
+      console.log(`[PATCH Test] Pet ID: ${petId}, Name: ${name}, Status: ${status}`);
+      
+      try {
+        const formData = new URLSearchParams();
+        formData.append('name', name);
+        formData.append('status', status);
+        
+        const response = await fetch(`https://petstore.swagger.io/v2/pet/${petId}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept': 'application/json'
+          },
+          body: formData.toString()
+        });
+        
+        const data = await response.json();
+        console.log('[PATCH Test] Response:', data);
+        displayResponse('patchResponse', data, response.status);
+      } catch (error) {
+        console.error('[PATCH Test] Error:', error);
+        displayResponse('patchResponse', { error: error.message }, 0);
+      }
+    }
+
+    // DELETE Test
+    async function testDeletePet() {
+      const petId = document.getElementById('deletePetId').value;
+      console.log(`%c[DELETE Test] Deleting pet with ID: ${petId}`, 'color: #f56565; font-weight: bold;');
+      
+      try {
+        const response = await fetch(`https://petstore.swagger.io/v2/pet/${petId}`, {
+          method: 'DELETE',
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+        
+        const data = await response.json();
+        console.log('[DELETE Test] Response:', data);
+        displayResponse('deleteResponse', data, response.status);
+      } catch (error) {
+        console.error('[DELETE Test] Error:', error);
+        displayResponse('deleteResponse', { error: error.message }, 0);
+      }
+    }
+
+    // Run all tests in sequence
+    async function runAllTests() {
+      console.log('%c🚀 Running all tests...', 'font-size: 14px; color: #48bb78; font-weight: bold;');
+      
+      await testGetPet();
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      await testPostPet();
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      await testPutPet();
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      await testPatchPet();
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      await testDeletePet();
+      
+      console.log('%c✅ All tests completed!', 'font-size: 14px; color: #48bb78; font-weight: bold;');
+    }
+  </script>
+</body>
+</html>

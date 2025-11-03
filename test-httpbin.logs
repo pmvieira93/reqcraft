@@ -1,0 +1,104 @@
+10:27:21.209 Navigated to file:///Users/pedvie1/Workspace/private/github/ReqCraft-extension/test-httpbin.html
+10:27:21.279 [ReqCraft] Content script loading... content.js:7:11
+10:27:21.280 [ReqCraft] Page interceptor injected test-httpbin.html:4:11
+10:27:21.280 [ReqCraft] ✅ Interception active test-httpbin.html:343:11
+10:27:21.281 [ReqCraft] ✅ Content script ready content.js:394:11
+10:27:21.282 📄 Test page loaded. Ready to test! test-httpbin.html:226:17
+10:27:21.282 Make sure to: test-httpbin.html:227:17
+10:27:21.282 1. Open extension background console test-httpbin.html:228:17
+10:27:21.282 2. Check if extension is enabled test-httpbin.html:229:17
+10:27:21.282 3. Verify your rule is enabled test-httpbin.html:230:17
+10:27:21.387 [ReqCraft] Sending 4 rules to page content.js:369:15
+10:27:21.387 [ReqCraft] Rules updated: 4 test-httpbin.html:15:15
+10:27:23.733 🚀 Sending POST request to httpbin.org/anything test-httpbin.html:93:21
+10:27:23.733 [ReqCraft] 🌐 Fetch: POST https://httpbin.org/anything test-httpbin.html:295:15
+10:27:23.733 [ReqCraft] === modifyBody called === test-httpbin.html:160:13
+10:27:23.733 [ReqCraft] URL: https://httpbin.org/anything test-httpbin.html:161:13
+10:27:23.733 [ReqCraft] Method: POST test-httpbin.html:162:13
+10:27:23.733 [ReqCraft] Body: {"test":"data","timestamp":1761906443734} test-httpbin.html:163:13
+10:27:23.733 [ReqCraft] Enabled: true test-httpbin.html:164:13
+10:27:23.733 [ReqCraft] Total rules: 4 test-httpbin.html:172:13
+10:27:23.733 [ReqCraft] --- matchesRule --- test-httpbin.html:20:13
+10:27:23.733 [ReqCraft] Rule: httpbin.org - change body request test-httpbin.html:21:13
+10:27:23.733 [ReqCraft] Rule enabled: true test-httpbin.html:22:13
+10:27:23.733 [ReqCraft] URL pattern: https://httpbin.org/* test-httpbin.html:23:13
+10:27:23.733 [ReqCraft] Rule methods: 
+Array [ "POST" ]
+test-httpbin.html:24:13
+10:27:23.734 [ReqCraft] Checking URL: https://httpbin.org/anything test-httpbin.html:25:13
+10:27:23.734 [ReqCraft] Checking method: POST test-httpbin.html:26:13
+10:27:23.734 [ReqCraft] Original pattern: https://httpbin.org/* test-httpbin.html:35:15
+10:27:23.734 [ReqCraft] Transformed pattern: https://httpbin\.org/.* test-httpbin.html:50:15
+10:27:23.734 [ReqCraft] Regex match result: true test-httpbin.html:53:15
+10:27:23.734 [ReqCraft] Method check: true (looking for POST in 
+Array [ "POST" ]
+ ) test-httpbin.html:62:15
+10:27:23.734 [ReqCraft] ✅ Rule matches! test-httpbin.html:75:13
+10:27:23.734 [ReqCraft] Rule "httpbin.org - change body request" matches: true test-httpbin.html:176:15
+10:27:23.734 [ReqCraft] --- matchesRule --- test-httpbin.html:20:13
+10:27:23.734 [ReqCraft] Rule: httpbin.org - any GET add header test-httpbin.html:21:13
+10:27:23.734 [ReqCraft] Rule enabled: true test-httpbin.html:22:13
+10:27:23.734 [ReqCraft] URL pattern: https://httpbin.org/* test-httpbin.html:23:13
+10:27:23.734 [ReqCraft] Rule methods: 
+Array [ "GET" ]
+test-httpbin.html:24:13
+10:27:23.734 [ReqCraft] Checking URL: https://httpbin.org/anything test-httpbin.html:25:13
+10:27:23.734 [ReqCraft] Checking method: POST test-httpbin.html:26:13
+10:27:23.734 [ReqCraft] Original pattern: https://httpbin.org/* test-httpbin.html:35:15
+10:27:23.734 [ReqCraft] Transformed pattern: https://httpbin\.org/.* test-httpbin.html:50:15
+10:27:23.734 [ReqCraft] Regex match result: true test-httpbin.html:53:15
+10:27:23.734 [ReqCraft] Method check: false (looking for POST in 
+Array [ "GET" ]
+ ) test-httpbin.html:62:15
+10:27:23.734 [ReqCraft] Method does not match test-httpbin.html:64:17
+10:27:23.734 [ReqCraft] Rule "httpbin.org - any GET add header" matches: false test-httpbin.html:176:15
+10:27:23.734 [ReqCraft] --- matchesRule --- test-httpbin.html:20:13
+10:27:23.734 [ReqCraft] Rule: httpbin.org - change body request v2 test-httpbin.html:21:13
+10:27:23.734 [ReqCraft] Rule enabled: false test-httpbin.html:22:13
+10:27:23.734 [ReqCraft] URL pattern: https://httpbin.org/* test-httpbin.html:23:13
+10:27:23.734 [ReqCraft] Rule methods: 
+Array(3) [ "POST", "PUT", "PATCH" ]
+test-httpbin.html:24:13
+10:27:23.734 [ReqCraft] Checking URL: https://httpbin.org/anything test-httpbin.html:25:13
+10:27:23.734 [ReqCraft] Checking method: POST test-httpbin.html:26:13
+10:27:23.734 [ReqCraft] Rule not enabled test-httpbin.html:29:15
+10:27:23.734 [ReqCraft] Rule "httpbin.org - change body request v2" matches: false test-httpbin.html:176:15
+10:27:23.734 [ReqCraft] --- matchesRule --- test-httpbin.html:20:13
+10:27:23.734 [ReqCraft] Rule: petstore - change body request test-httpbin.html:21:13
+10:27:23.734 [ReqCraft] Rule enabled: false test-httpbin.html:22:13
+10:27:23.734 [ReqCraft] URL pattern: https://petstore.swagger.io/v2/pet* test-httpbin.html:23:13
+10:27:23.734 [ReqCraft] Rule methods: 
+Array(3) [ "POST", "PUT", "PATCH" ]
+test-httpbin.html:24:13
+10:27:23.734 [ReqCraft] Checking URL: https://httpbin.org/anything test-httpbin.html:25:13
+10:27:23.734 [ReqCraft] Checking method: POST test-httpbin.html:26:13
+10:27:23.734 [ReqCraft] Rule not enabled test-httpbin.html:29:15
+10:27:23.735 [ReqCraft] Rule "petstore - change body request" matches: false test-httpbin.html:176:15
+10:27:23.735 [ReqCraft] Matching rules: 1 test-httpbin.html:180:13
+10:27:23.735 [ReqCraft] Processing rule: httpbin.org - change body request test-httpbin.html:184:15
+10:27:23.735 [ReqCraft] Body modification: 
+Object { enabled: true, rules: (1) […] }
+test-httpbin.html:185:15
+10:27:23.735 [ReqCraft] Body mod rules count: 1 test-httpbin.html:196:15
+10:27:23.735 [ReqCraft] Parsed body: 
+Object { test: "data", timestamp: 1761906443734 }
+test-httpbin.html:200:17
+10:27:23.735 [ReqCraft] Mod action: override enabled: true test-httpbin.html:205:19
+10:27:23.735 [ReqCraft] Applying override with value: {"newKey": "newValue"} test-httpbin.html:210:21
+10:27:23.735 [ReqCraft] Evaluated value: {"newKey": "newValue"} test-httpbin.html:213:23
+10:27:23.735 [ReqCraft] Parsed new body: 
+Object { newKey: "newValue" }
+test-httpbin.html:215:23
+10:27:23.735 [ReqCraft] After dynamic eval: 
+Object { newKey: "newValue" }
+test-httpbin.html:217:23
+10:27:23.735 [ReqCraft] ✅ Override successful test-httpbin.html:219:23
+10:27:23.735 [ReqCraft] ✅ Body modified test-httpbin.html:272:19
+10:27:23.735 [ReqCraft] Original: {"test":"data","timestamp":1761906443734} test-httpbin.html:273:19
+10:27:23.735 [ReqCraft] Modified: {"newKey":"newValue"} test-httpbin.html:274:19
+10:27:28.095 ✅ Response received: 
+Object { args: {}, data: '{"newKey":"newValue"}', files: {}, form: {}, headers: {…}, json: {…}, method: "POST", origin: "87.58.95.171", url: "https://httpbin.org/anything" }
+test-httpbin.html:110:25
+
+​
+

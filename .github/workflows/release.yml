@@ -45,7 +45,7 @@ jobs:
       - name: Validate Tag Format
         run: |
           TAG="${{ steps.tag.outputs.tag }}"
-          if ! [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+          if ! [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(\-[a-z]+)?$ ]]; then
             echo "Invalid tag: '$TAG'"
             echo "Must match: vX.Y.Z (e.g. v1.0.0)"
             exit 1
@@ -67,8 +67,8 @@ jobs:
         run: |
           cat manifest-chrome.json > manifest.json
           zip -r reqcraft-chrome-${{ steps.tag.outputs.tag }}.zip \
-            manifest.json *.js *.html *.png *.svg \
-            -x "*.git*" "*node_modules*" "*.github*" "README.md" "LICENSE" ".gitignore"
+            manifest.json *.js *.html icons/*.png icons/*.svg \
+            -x "test*.html" "*.git*" "*node_modules*" "*.github*" "README.md" "LICENSE" ".gitignore"
           echo "Chrome ZIP created"
           cp reqcraft-chrome-${{ steps.tag.outputs.tag }}.zip \
              reqcraft-chrome-${{ steps.tag.outputs.tag }}.crx
@@ -80,8 +80,8 @@ jobs:
         run: |
           cat manifest-firefox.json > manifest.json
           zip -r reqcraft-firefox-${{ steps.tag.outputs.tag }}.zip \
-            manifest.json *.js *.html *.png *.svg \
-            -x "*.git*" "*node_modules*" "*.github*" "README.md" "LICENSE" ".gitignore"
+            manifest.json *.js *.html icons/*.png icons/*.svg \
+            -x "test*.html" "*.git*" "*node_modules*" "*.github*" "README.md" "LICENSE" ".gitignore"
           echo "Firefox ZIP created"
           cp reqcraft-firefox-${{ steps.tag.outputs.tag }}.zip \
              reqcraft-firefox-${{ steps.tag.outputs.tag }}.xpi

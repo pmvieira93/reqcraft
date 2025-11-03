@@ -66,7 +66,7 @@ jobs:
       - name: Create Chrome ZIP
         run: |
           cat manifest-chrome.json > manifest.json
-          zip -r reqcraft-chrome-${{ steps.tag.outputs.tag }}.zip \
+          zip -0 -r reqcraft-chrome-${{ steps.tag.outputs.tag }}.zip \
             manifest.json *.js *.html icons/*.png icons/*.svg \
             -x "test*.html" "*.git*" "*node_modules*" "*.github*" "README.md" "LICENSE" ".gitignore"
           echo "Chrome ZIP created"
@@ -79,12 +79,12 @@ jobs:
       - name: Create Firefox ZIP
         run: |
           cat manifest-firefox.json > manifest.json
-          zip -r reqcraft-firefox-${{ steps.tag.outputs.tag }}.zip \
+          zip -0 -r reqcraft-firefox-${{ steps.tag.outputs.tag }}.xpi \
             manifest.json *.js *.html icons/*.png icons/*.svg \
             -x "test*.html" "*.git*" "*node_modules*" "*.github*" "README.md" "LICENSE" ".gitignore"
-          echo "Firefox ZIP created"
-          cp reqcraft-firefox-${{ steps.tag.outputs.tag }}.zip \
-             reqcraft-firefox-${{ steps.tag.outputs.tag }}.xpi
+          echo "Firefox XPI created"
+          cp reqcraft-firefox-${{ steps.tag.outputs.tag }}.xpi \
+             reqcraft-firefox-${{ steps.tag.outputs.tag }}.zip
 
       # -------------------------------------------------
       # Create GitHub Release

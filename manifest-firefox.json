@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "ReqCraft",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Craft and modify HTTP requests for testing and debugging",
   "permissions": [
     "webRequest",
@@ -31,5 +31,10 @@
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
+  },
+  "applications": {
+    "gecko": {
+      "id": "reqcraft@pmvieira93.github.io"
+    }
   }
 }

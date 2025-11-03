@@ -1,5 +1,6 @@
 {
   "manifest_version": 3,
+  "id": "reqcraft@pmvieira93.github.io",
   "name": "ReqCraft",
   "version": "1.0.0",
   "description": "Intercept and modify HTTP requests for testing and debugging",
